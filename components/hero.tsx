@@ -7,8 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 
 import { siteConfig } from "@/config/site"
 import Particles from "@/components/particles"
-
-import { Text } from "./Text"
+import { Text } from "@/components/text"
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null)
