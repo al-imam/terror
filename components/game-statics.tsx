@@ -3,13 +3,13 @@
 import Image from "next/image"
 import FFLogo from "@/assets/ff-logo.png"
 import GameImg from "@/assets/garena-free-fire.jpg"
-import { CircleDotIcon, ClipboardCopyIcon } from "lucide-react"
+import { ClipboardCopyIcon } from "lucide-react"
 import { toast } from "sonner"
 
 export function GameStatics() {
   return (
     <div className="py-4 opacity-0 duration-1000 ease-out animate-out fade-out-100 fill-mode-forwards [animation-delay:1300ms]">
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-8 sm:grid-cols-2  md:grid-cols-3 xl:grid-cols-4">
         {Array.from({ length: 5 }).map((_, i) => (
           <Game
             key={i}
