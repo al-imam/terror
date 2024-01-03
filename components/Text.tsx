@@ -25,8 +25,8 @@ export function Text({ text, delay = 0, duration = 0.05, ...props }: Props) {
       y: 0,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
+        damping: 15,
+        stiffness: 400,
       },
     },
     hidden: {
@@ -34,8 +34,8 @@ export function Text({ text, delay = 0, duration = 0.05, ...props }: Props) {
       y: 20,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
+        damping: 15,
+        stiffness: 400,
       },
     },
   }
