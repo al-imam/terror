@@ -34,6 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
+          { "debug-screens": process.env.NODE_ENV === "development" },
           fontSans.variable
         )}
       >

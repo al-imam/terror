@@ -10,13 +10,6 @@ module.exports = {
   darkMode: ["class"],
   content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       __colors: ({ theme }) => {
         const flatPalette = flattenColorPalette(theme("colors"))
@@ -104,6 +97,8 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    require("tailwind-layout"),
+    require("tailwindcss-debug-screens"),
     plugin(({ addBase, theme }) => {
       addBase({
         ":root": {
