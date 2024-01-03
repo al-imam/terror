@@ -1,3 +1,5 @@
+import { Toaster } from "@/components/ui/sonner"
+
 import "@/styles/globals.css"
 import { Metadata } from "next"
 
@@ -34,12 +36,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-[200vh] bg-background font-sans antialiased",
+          "min-h-screen bg-background pb-24 font-sans antialiased",
           { "debug-screens": process.env.NODE_ENV === "development" },
           fontSans.variable
         )}
       >
         <SmoothScroll />
+        <Toaster richColors />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />

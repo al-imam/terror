@@ -19,10 +19,10 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
 
   return (
-    <div className="content-expand overflow-hidden" ref={ref}>
+    <div className="content-expand relative overflow-hidden" ref={ref}>
       <motion.div style={{ y }} className="absolute inset-0 -z-10 flex w-full">
         <Particles
-          className="min-h-full w-full bg-transparent opacity-0 delay-1000 duration-1000 ease-out animate-in animate-out fade-in-0 fade-out-100 fill-mode-forwards"
+          className="min-h-full w-full bg-transparent opacity-0 delay-1000 duration-1000 ease-out animate-out fade-out-100 fill-mode-forwards"
           quantity={100}
           adopt
         />

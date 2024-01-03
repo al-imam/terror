@@ -1,14 +1,11 @@
-import { Hero } from "@/components/Hero"
+import { GameStatics } from "@/components/game-statics"
+import { Hero } from "@/components/hero"
 
 export default function IndexPage() {
   return (
     <section className="content relative">
       <Hero />
-      <div className="grid grid-cols-4 gap-4">
-        {Array.from({ length: 5 }).map(() => {
-          return <div className="h-64 bg-pink-400" />
-        })}
-      </div>
+      <GameStatics />
     </section>
   )
 }
