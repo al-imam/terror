@@ -1,6 +1,12 @@
 "use client"
 
-import React, { Fragment, useEffect, useRef } from "react"
+import React, {
+  Fragment,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+} from "react"
 import { useWindowSize } from "@react-hook/window-size"
 import {
   MotionValue,
@@ -19,6 +25,16 @@ import { cn } from "@/lib/utils"
  * @see https://codesandbox.io/s/x3r465?file=/src/App.js
  */
 
+const context = createContext<{ root: React.RefObject<HTMLDivElement> } | null>(
+  null
+)
+
+function useMarquee() {
+  const state = useContext(context)
+  if (state) return state
+  throw new Error("useMarquee must be used within a MarqueeProvider")
+}
+
 type MarqueeItemProps = {
   children: React.ReactNode
   speed: MotionValue<any>
@@ -30,6 +46,8 @@ function MarqueeItem({
   className,
   ...rest
 }: MarqueeItemProps) {
+  const observerRef = useRef<IntersectionObserver | null>(null)
+  const { root } = useMarquee()
   const itemRef = useRef<HTMLDivElement>(null)
   const rectRef = useRef<DOMRect | null>(null)
   const x = useRef(0)
@@ -58,7 +76,7 @@ function MarqueeItem({
     setX()
   }
 
-  const [_, loopStart] = useRafLoop(loop, false)
+  const [loopStop, loopStart] = useRafLoop(loop, false)
 
   useEffect(() => {
     if (itemRef.current) {
@@ -67,7 +85,25 @@ function MarqueeItem({
   }, [width, height])
 
   useEffect(() => {
-    loopStart()
+    const _current = root.current
+
+    if (_current) {
+      observerRef.current = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          loopStart()
+        } else {
+          loopStop()
+        }
+      })
+
+      observerRef.current.observe(_current)
+    }
+
+    return () => {
+      if (observerRef.current && _current) {
+        observerRef.current.unobserve(_current)
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -174,7 +210,7 @@ export function Marquee({
   useRafLoop(loop)
 
   return (
-    <Fragment>
+    <context.Provider value={{ root: marqueeRef }}>
       <motion.div
         className={cn("fixed inset-0 bg-[#e6d5b8]", className.overlay)}
         style={{ opacity }}
@@ -203,6 +239,6 @@ export function Marquee({
           {children}
         </MarqueeItem>
       </motion.div>
-    </Fragment>
+    </context.Provider>
   )
 }
