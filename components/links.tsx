@@ -1,7 +1,7 @@
 export function Links() {
   return (
     <section className="pb-20 pt-24 sm:pb-36 sm:pt-16">
-      <ul className="mx-auto flex max-w-3xl flex-wrap justify-between gap-2 sm:gap-4">
+      <ul className="mx-auto flex max-w-3xl flex-wrap justify-between gap-2 opacity-0 delay-500 duration-1000 ease-out animate-out fade-out-100 fill-mode-forwards sm:gap-4">
         <li className="icon icon--twitter">
           <a href="#" target="_blank">
             <span className="icon__name">Twitter</span>
