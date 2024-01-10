@@ -37,7 +37,7 @@ export default function Contact() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    window.location.href = `mailto:srabon.ahmed88773703?subject=${values.subject}&body=${values.msg}`
+    window.location.href = `mailto:srabon.ahmed88773703@gmail.com?subject=${values.subject}&body=${values.msg}`
     form.reset()
   }
 
